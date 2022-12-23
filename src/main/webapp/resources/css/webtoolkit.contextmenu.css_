@@ -1,0 +1,66 @@
+/* 
+    Document   : webtoolkit.contextmenu.css
+    Created on : Mar 29, 2011, 6:05:58 PM
+    Author     : kdvt_kientt6
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/*root {
+    display: block;
+}*/
+ul.SimpleContextMenu {
+    display: none;
+    position: absolute;/*relative;*/
+    margin: 0px;
+    padding: 0px;
+    font-family: verdana;
+    font-size: 12px;
+    list-style-type: none;
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+}
+ul.SimpleContextMenu li {
+    border-bottom: 1px solid #000000;
+}
+
+ul.SimpleContextMenu li a {
+    display: block;
+    width: 100px;
+    padding: 2px 10px 3px 10px;
+    text-decoration: none;
+    color: #ff0000;
+    background: #eeeeee;
+}
+
+ul.SimpleContextMenu li a:hover {
+    text-decoration: none;
+    color: #ffffff;
+    background:#ff0000;/*#15428B;*//*aqua;*//*#BCD2EC;*/
+}
+
+/*ul.SimpleContextMenu li {
+    border-bottom: 1px solid #000000;
+}
+
+ul.SimpleContextMenu li a {
+    display: block;
+    width: 100px;
+    padding: 2px 10px 3px 10px;
+    text-decoration: none;
+    color:#ff0000;#teal;red;
+    background:bottom;  #eeeeee;
+}
+
+ul.SimpleContextMenu li a:hover {
+    text-decoration: none;
+    color:teal; #ffffff;
+    background:#ff0000; #ff0000;
+}
+*/

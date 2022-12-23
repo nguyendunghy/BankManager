@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:o="http://omnifaces.org/ui"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+>
+<f:view>
+	<h:head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<h:outputStylesheet name="css/bootstrap.css" library="bootstrap"/>
+		<!--            <h:outputStylesheet name="css/bootstrap-theme.css" library="bootstrap" />-->
+		<h:outputStylesheet library="custom-control" name="css/animate.min.css"></h:outputStylesheet>
+		<h:outputStylesheet library="custom-control" name="css/custom.css"></h:outputStylesheet>
+		<h:outputStylesheet library="custom-control" name="css/select/select2.min.css"></h:outputStylesheet>
+		<h:outputStylesheet library="css" name="cssLayout.css"/>
+		<h:outputStylesheet library="css" name="component.css"/>
+		<h:outputStylesheet library="css" name="font-awesome.css"/>
+		<h:outputStylesheet library="css" name="bank_account.css"/>
+		<h:outputScript library="bootstrap" name="js/bootstrap.min.js"/>
+		<h:outputScript library="js" name="classie.js"/>
+		<h:outputScript library="js" name="validate.js"/>
+
+		<h:outputStylesheet name="css/font-icon-layout.css" library="sentinel-layout"/>
+		<h:outputStylesheet name="css/sentinel-layout.css" library="sentinel-layout"/>
+		<h:outputStylesheet name="css/core-layout.css" library="sentinel-layout"/>
+		<h:outputStylesheet name="css/theme.css" library="sentinel-layout"/>
+		<h:outputScript name="jquery/jquery.js" library="primefaces" target="head"/>
+
+		<title>Bank Manager</title>
+	</h:head>
+	<h:body>
+
+
+		<div>
+			<div>
+				<p:toolbar id="toolbar">
+					<f:facet name="left">
+						<p:commandLink id="layout-logo">
+							<p:graphicImage name="funny-movie-1.png" library="images" class="Fs14 Fleft"
+											alt="Circleflip" style="height:70px"/>
+						</p:commandLink>
+						<p:outputLabel value="BANK MANAGER" class="font3em"/>
+					</f:facet>
+					<f:facet name="right">
+						<c:if test="${bankAccountController.session == null}">
+							<p:commandButton value="Login"
+											 class="btn"
+											 ajax="true"
+											 update="loginForm"
+											 action="#{bankAccountController.prepareLogin}"
+											 oncomplete="openModalAction('#modalAction')"
+
+
+							/>
+							<p:commandButton value="Register"
+											 class="btn"
+											 ajax="true"
+											 update="registerForm"
+											 action="#{bankAccountController.prepareRegister}"
+											 oncomplete="openModalAction('#modalRegister')"
+
+							/>
+						</c:if>
+						<c:if test="${bankAccountController.session != null}">
+
+							<p:outputLabel class="marginRight20"
+										   value="Welcome #{bankAccountController.session.username}"/>
+
+							<p:commandButton value="Add Bank Account"
+											 class="btn"
+											 ajax="true"
+											 update="bankAccountForm"
+											 action="#{bankAccountController.prepareAddBankAccount}"
+											 oncomplete="openModalAction('#modalAddBankAccount')"
+							/>
+
+							<p:commandButton value="Logout"
+											 class="btn"
+											 ajax="true"
+											 update="toolbar"
+											 icon="pi pi-home"
+											 action="#{bankAccountController.logout}"
+
+							/>
+						</c:if>
+
+					</f:facet>
+				</p:toolbar>
+			</div>
+
+			<div class="Container marginTop10">
+				<h:form id="searchBankAccountForm">
+					<div class="Container50 Responsive50">
+						<div class="Container100">
+							<div class="ContainerIndent">
+								<div class="Container20 Responsive20">
+									<p:outputLabel value="Account Name" style="color: #000000"/>
+								</div>
+								<div class="Container80 Responsive80 ">
+									<p:inputText value="#{bankAccountController.bankAccountSearchForm.accountName}"
+												 style="width: 100%; color: #000000"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="Container50 Responsive50">
+						<div class="Container100">
+							<div class="ContainerIndent">
+								<div class="Container20 Responsive20">
+									<p:outputLabel value="Account Number" style="color: #000000"/>
+								</div>
+								<div class="Container80 Responsive80 ">
+									<p:inputText value="#{bankAccountController.bankAccountSearchForm.accountNo}"
+												 style="width: 100%; color: #000000"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="Container50 Responsive50">
+						<div class="Container100">
+							<div class="ContainerIndent">
+								<div class="Container20 Responsive20">
+									<p:outputLabel value="Currency" style="color: #000000"/>
+								</div>
+								<div class="Container80 Responsive80 ">
+									<p:inputText value="#{bankAccountController.bankAccountSearchForm.currency}"
+												 style="width: 100%; color: #000000"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</h:form>
+				<div class="Container100">
+					<div class="col-md-12 col-sm-12 col-xs-12 text-center MarTop10">
+						<p:commandButton
+								icon="fa icon-search color-ececec"
+								id="search" value="Search"
+								ajax="true" update="bankAccountList"
+								action="#{bankAccountController.searchBankAccount()}"
+								class="btn btn-blue"
+						/>
+					</div>
+				</div>
+
+
+				<div class="x_content">
+					<p:tooltip/>
+					<p:dataTable id="bankAccountList" var="bankAccount" value="#{bankAccountController.lazyModel}"
+								 widgetVar="datatableWidget"
+								 rowKey="#{bankAccount.id}"
+								 rows="10" paginator="true"
+								 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								 rowsPerPageTemplate="5,10,15" rowIndexVar="rowIndex" emptyMessage="No bank account"
+								 reflow="true" paginatorPosition="bottom"
+								 currentPageReportTemplate="Total record {totalRecords}"
+								 lazy="true">
+
+						<p:column headerText="ID" class="text-center" width="5%">
+							<h:outputText escape="true" value="#{rowIndex+1}" style="color: blue"/>
+						</p:column>
+						<p:column headerText="Account Name" width="30%">
+							<div>
+								<h:outputText escape="true" value="#{bankAccount.accountName}"
+											  title="Account Name"/>
+							</div>
+						</p:column>
+
+						<p:column headerText="Account No" width="30%">
+							<div>
+								<h:outputText escape="true" value="#{bankAccount.accountNo}"
+											  title="Account No"/>
+							</div>
+						</p:column>
+						<p:column headerText="Currency" width="30%">
+
+							<div>
+								<h:outputText escape="true" value="#{bankAccount.currency}"
+											  title="Currency"/>
+							</div>
+						</p:column>
+
+					</p:dataTable>
+				</div>
+			</div>
+
+
+			<div id="modalAction" class="modal fade">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<h:form id="loginForm">
+							<p:focus context="loginForm"/>
+							<ui:include src="loginAction.xhtml"/>
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+			<div id="modalRegister" class="modal fade">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<h:form id="registerForm">
+							<p:focus context="registerForm"/>
+							<ui:include src="registerAction.xhtml"/>
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+			<div id="modalAddBankAccount" class="modal fade">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<h:form id="bankAccountForm">
+							<p:focus context="bankAccountForm"/>
+							<ui:include src="addBankAccountAction.xhtml"/>
+						</h:form>
+					</div>
+				</div>
+			</div>
+
+
+			<script type="text/javascript">
+				openModalAction = function (modalId) {
+					$(modalId).modal('show');
+					return false;
+				};
+				closeModalAction = function (modalId) {
+					$(modalId).modal('hide');
+					return false;
+				};
+			</script>
+		</div>
+	</h:body>
+</f:view>
+</html>

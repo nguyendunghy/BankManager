@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<ui:composition>
+	<div class="modal-header">
+		<!--		<i class="fa fa-close fa-5x circle-close-icon" data-dismiss="modal" aria-hidden="true"></i>-->
+		<h4 class="modal-title">
+			Login
+		</h4>
+	</div>
+	<div class="modal-body">
+		<div class="ContainerIndent ui-fluid">
+			<div class="Container">
+				<div class="Container50 Responsive50">
+					<div class="Container100">
+						<div class="ContainerIndent">
+							<div class="Container30 Responsive30">
+								<p:outputLabel value="Username" for="username" style="color: #000000"/>
+								<span class="required">*</span>
+							</div>
+							<div class="Container70 Responsive70 item form-group">
+								<p:inputText id="username" value="#{bankAccountController.loginRequest.username}"
+											 maxlength="100"
+											 style="color: #000000">
+								</p:inputText>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="Container50 Responsive50">
+					<div class="Container100">
+						<div class="ContainerIndent">
+							<div class="Container30 Responsive30">
+								<p:outputLabel value="Password" for="password" style="color: #000000"/>
+								<span class="required">*</span>
+							</div>
+							<div class="Container70 Responsive70 item form-group">
+								<p:password id="password" value="#{bankAccountController.loginRequest.password}"
+											maxlength="200"
+											style="color: #000000">
+								</p:password>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="Container">
+				<div class="col-md-12 col-sm-12 col-xs-12 text-center">
+					<p:commandButton
+							value="login"
+							ajax="true"
+							class="btn btn-primary"
+							update="toolbar"
+							action="#{bankAccountController.login}"
+					/>
+				</div>
+				<div class="col-md-12 col-sm-12 col-xs-12 text-center">
+					<p:commandButton value="cancel"
+									 class="btn btn-dark"
+									 oncomplete="closeModalAction('#modalAction')"
+					/>
+					<p:messages id="messageValidate" showDetail="true" autoUpdate="true" closable="true"/>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		//<![CDATA[
+
+
+		//]]>
+	</script>
+</ui:composition>
+</html>

@@ -1,0 +1,235 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 19, 2016, 4:03:15 PM
+    Author     : thanhlq6
+*/
+
+
+@import 'variables';
+#top {
+    margin: 0;
+    padding: 0;
+    a {
+        &:link,&:visited {
+            color: white;
+            font-weight : bold;
+            text-decoration: none;
+            &:hover {
+                color: black;
+                font-weight : bold;
+                text-decoration : underline;
+            }
+        }          
+    }    
+}
+#header {
+    .navnar {
+        border-radius: 0px;
+        &:after {
+            content: " ";
+            display: table;
+            clear: both;
+        }        
+    }
+    .navbar-custom {
+        /*background-color: @primary-color;*/        
+        background: @primary-color; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(@primary-color, @secondary-color); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(@primary-color, @secondary-color); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(@primary-color, @secondary-color); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(@primary-color, @secondary-color); /* Standard syntax */
+    }
+    .sb-toggle-left {
+        width: 58px;
+        float: left;
+        padding: 20px;
+        cursor: pointer;
+    }
+    .navicon-line {
+        width: 24px;
+        height: 4px;
+        border-radius: 1px;
+        margin-bottom: 3px;
+        background-color: #fff;
+    }    
+}
+#logo{
+    a {
+        line-height: 4;
+        span {
+            font-size: 15px;
+            font-family: @font-family-primary;
+            &:hover {
+                background-color: transparent;
+                text-decoration: none;
+                color: white;
+            }
+        }        
+    }
+}
+#left {
+    .cbp-spmenu {
+        ul {
+            margin: 0;
+            padding: 0;
+            li {
+                list-style-type: none;
+                i {
+                    float: right;
+                    margin-right: 5px;
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+#content{
+    margin-top: 5px;
+    min-height: 600px;
+}
+.footer {    
+    position: fixed;
+    display: block;
+    bottom:0;
+    width:100%;
+    margin:0;
+    padding:0;
+    p {
+        padding-top: 20px;
+        padding-bottom: 0;
+        line-height: 2;
+    }
+}
+.widget {
+    li {
+        list-style: none;
+        i{
+            padding-right: 5px;
+            width: 13px;
+            height: 14px;
+            border-radius: 1px;            
+            background-color: #fff;
+        }        
+    }
+}
+.widget-title {
+    margin-bottom: 20px;
+    h4 {
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 21px;
+    }
+    ul {
+        display: block;
+        list-style-type: disc;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 40px;
+    }
+}
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.copyright {
+    background-color: #2b2d32;
+    padding: 20px 0;
+    display: block;
+    position: relative;
+    text-transform: capitalize;
+    p {
+        color: white;
+        padding: 0;
+    }
+    a{
+        color: white;
+        padding: 0;        
+        &:hover {
+            color: white;
+        }
+    }
+    ul {
+        padding: 0 15px;
+        li {
+            margin: 5px 0 0 10px;
+            display: inline-block;
+        }
+    }
+}
+a {
+    &:hover {
+        text-decoration: none;
+    }
+    &:link {
+        text-decoration: none;
+    }
+    &:visited {
+        text-decoration: none;
+    }
+
+}
+.cbp-spmenu {
+    overflow: auto;
+}
+.no-decoration {
+    text-decoration: none;
+}
+
+#content-body {
+    &:before {
+        content: ' ';
+        display: table;
+        clear: both;
+    }
+}
+
+/* end navbar */
+.cancel-icon {
+    background-image: url('../images/icons/cancel.png') !important;
+    width: 16px;
+    height: 16px;
+    alignment-baseline: central;
+}
+.save-icon {
+    background-image: url('../images/icons/icon-save.gif') !important;
+    width: 16px;
+    height: 16px;
+    alignment-baseline: central;
+}
+.add-icon {
+    background-image: url('../images/icons/insert.png') !important;
+    width: 16px;
+    height: 16px;
+    alignment-baseline: central;
+}
+.delete-icon {
+    background-image: url('../images/icons/icon-delete.png') !important;
+    width: 16px;
+    height: 16px;
+    alignment-baseline: central;
+}
+.edit-icon {
+    background-image: url('../images/icons/edit.png') !important;
+    width: 16px;
+    height: 16px;
+    alignment-baseline: central;
+}
+.search-icon {
+    background-image: url('../images/icons/search.png') !important;
+    width: 16px;
+    height: 16px;
+    alignment-baseline: central;
+}
+
+
+

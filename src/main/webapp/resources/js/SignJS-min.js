@@ -1,0 +1,1 @@
+var socket={url:"",token:"Token",dataSign:"",serialCert:"",sign:function(c,d){var b={token:this.token,dataSign:this.dataSign,serialToCheck:this.serialCert};var e=JSON.stringify(b);var a=new WebSocket(this.url);a.onopen=function(){a.send(e)};a.onmessage=function(f){c(f)};a.onclose=function(f){d(f)}}};
