@@ -1,4 +1,4 @@
-package com.example.bankmanager.controller;
+package com.example.bankmanager.controller.web;
 
 import com.example.bankmanager.entity.*;
 import com.example.bankmanager.entity.form.BankAccountSearchForm;
@@ -27,7 +27,7 @@ import java.util.UUID;
 @Scope(value = "session")
 @Component(value = "bankAccountController")
 @ELBeanName(value = "bankAccountController")
-@Join(path = "/", to = "/layout.jsf")
+@Join(path = "/home", to = "/layout.jsf")
 public class BankAccountController {
 	@Autowired
 	private BankAccountService bankAccountService;
@@ -39,8 +39,6 @@ public class BankAccountController {
 	private SessionService sessionService;
 
 	private BankAccount bankAccount;
-
-	private RegisterRequest registerRequest;
 
 	private LoginRequest loginRequest;
 
@@ -59,23 +57,14 @@ public class BankAccountController {
 
 	@PostConstruct
 	public void init() {
-		log.info("init video controller");
-		registerRequest = new RegisterRequest();
+		log.info("init bank account controller");
 		loginRequest = new LoginRequest();
 		session = null;
 		bankAccountSearchForm = new BankAccountSearchForm();
 		lazyModel = new BankAccountLazyModel(bankAccountService, bankAccountSearchForm);
 	}
 
-	public void prepareLogin() {
-		log.info("start prepare login");
-		loginRequest = new LoginRequest();
-	}
 
-	public void prepareRegister() {
-		log.info("start prepare register");
-		registerRequest = new RegisterRequest();
-	}
 
 	public void prepareAddBankAccount() {
 		log.info("start add bank account");
@@ -83,37 +72,6 @@ public class BankAccountController {
 	}
 
 
-	public boolean login() {
-		log.info("Start login");
-		String errMessage = userService.login(loginRequest);
-		if (!StringUtils.isEmpty(errMessage)) {
-			MessageUtils.setMessageForMessageId(loginMessageId, errMessage, "error");
-			return false;
-		}
-
-		session = Session.builder()
-				.session(UUID.randomUUID().toString())
-				.username(loginRequest.getUsername())
-				.expiredTime(System.currentTimeMillis() + Constants.EXPIRED_TIME)
-				.status(Constants.ACTIVE)
-				.build();
-		sessionService.save(session);
-
-		MessageUtils.setMessageForMessageId(loginMessageId, "Login success", "info");
-		return true;
-	}
-
-	public boolean register() {
-		log.info("start register");
-		String errMessage = userService.register(registerRequest);
-		if (!StringUtils.isEmpty(errMessage)) {
-			MessageUtils.setMessageForMessageId(registerMessageId, errMessage, "error");
-			return false;
-		}
-
-		MessageUtils.setMessageForMessageId(registerMessageId, "Register success", "info");
-		return true;
-	}
 
 	public boolean addBankAccount() {
 		log.info("start adding a bank account");

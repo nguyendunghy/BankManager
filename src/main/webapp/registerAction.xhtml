@@ -22,7 +22,7 @@
 								<span class="required">*</span>
 							</div>
 							<div class="Container70 Responsive70 item form-group">
-								<p:inputText id="username" value="#{bankAccountController.registerRequest.username}"
+								<p:inputText id="username" value="#{loginController.registerRequest.username}"
 											 maxlength="100" style="color: #000000">
 									<!--                                        <p:keyFilter inputRegEx="/^[a-zA-Z0-9_\-]*$/" preventPaste="false" />-->
 								</p:inputText>
@@ -38,7 +38,7 @@
 								<span class="required">*</span>
 							</div>
 							<div class="Container70 Responsive70 item form-group">
-								<p:password id="password" value="#{bankAccountController.registerRequest.password}"
+								<p:password id="password" value="#{loginController.registerRequest.password}"
 											maxlength="200" style="color: #000000">
 									<!--                                        <p:keyFilter  inputRegEx ="/^[^\!-\,\.\/\:-\@\[-\^\`\{-\~]*$/"  preventPaste="false" />-->
 								</p:password>
@@ -56,7 +56,7 @@
 							</div>
 							<div class="Container70 Responsive70 item form-group">
 								<p:password id="confirmPassword"
-											value="#{bankAccountController.registerRequest.confirmPassword}" maxlength="200"
+											value="#{loginController.registerRequest.confirmPassword}" maxlength="200"
 											style="color: #000000">
 									<!--										<p:keyFilter  inputRegEx ="/^[^\!-\,\.\/\:-\@\[-\^\`\{-\~]*$/"  preventPaste="false" />-->
 								</p:password>
@@ -70,11 +70,12 @@
 
 			<div class="Container MarTop30">
 				<div class="col-md-12 col-sm-12 col-xs-12 text-center">
+					<p:messages id="messageValidate" showDetail="true" autoUpdate="true" closable="true"/>
 					<p:commandButton
 							value="register"
 							ajax="true"
 							class="btn btn-primary"
-							action="#{bankAccountController.register}"
+							action="#{loginController.register}"
 					/>
 
 					<p:commandButton value="cancel"
@@ -83,7 +84,6 @@
 
 
 					/>
-					<p:messages id="messageValidate" showDetail="true" autoUpdate="true" closable="true"/>
 				</div>
 			</div>
 

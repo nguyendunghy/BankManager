@@ -41,31 +41,13 @@
 				<p:toolbar id="toolbar">
 					<f:facet name="left">
 						<p:commandLink id="layout-logo">
-							<p:graphicImage name="funny-movie-1.png" library="images" class="Fs14 Fleft"
+							<p:graphicImage name="bank_avatar.png" library="images" class="Fs14 Fleft"
 											alt="Circleflip" style="height:70px"/>
 						</p:commandLink>
 						<p:outputLabel value="BANK MANAGER" class="font3em"/>
 					</f:facet>
 					<f:facet name="right">
-						<c:if test="${bankAccountController.session == null}">
-							<p:commandButton value="Login"
-											 class="btn"
-											 ajax="true"
-											 update="loginForm"
-											 action="#{bankAccountController.prepareLogin}"
-											 oncomplete="openModalAction('#modalAction')"
 
-
-							/>
-							<p:commandButton value="Register"
-											 class="btn"
-											 ajax="true"
-											 update="registerForm"
-											 action="#{bankAccountController.prepareRegister}"
-											 oncomplete="openModalAction('#modalRegister')"
-
-							/>
-						</c:if>
 						<c:if test="${bankAccountController.session != null}">
 
 							<p:outputLabel class="marginRight20"
@@ -189,27 +171,6 @@
 			</div>
 
 
-			<div id="modalAction" class="modal fade">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<h:form id="loginForm">
-							<p:focus context="loginForm"/>
-							<ui:include src="loginAction.xhtml"/>
-						</h:form>
-					</div>
-				</div>
-			</div>
-
-			<div id="modalRegister" class="modal fade">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<h:form id="registerForm">
-							<p:focus context="registerForm"/>
-							<ui:include src="registerAction.xhtml"/>
-						</h:form>
-					</div>
-				</div>
-			</div>
 
 			<div id="modalAddBankAccount" class="modal fade">
 				<div class="modal-dialog modal-lg">
